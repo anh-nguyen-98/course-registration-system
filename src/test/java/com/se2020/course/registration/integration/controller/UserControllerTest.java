@@ -1,6 +1,9 @@
-package com.se2020.course.registration.unit.controller;
+package com.se2020.course.registration.integration.controller;
 
+import com.se2020.course.registration.controller.UserController;
+import com.se2020.course.registration.entity.Permission;
 import com.se2020.course.registration.entity.User;
+import com.se2020.course.registration.repository.PermissionRepository;
 import com.se2020.course.registration.repository.UserRepository;
 import com.se2020.course.registration.wrapper.AuthUserWrapper;
 import org.junit.jupiter.api.MethodOrderer;
@@ -11,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
+import java.util.List;
+
+import static com.se2020.course.registration.utils.SecurityUtils.hashPassword;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -22,7 +28,11 @@ public class UserControllerTest {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    PermissionRepository permissionRepository;
+    @Autowired
     TestRestTemplate restTemplate; // stand-alone browser as http
+
+
 
     @Test
     @Order(1)
@@ -48,11 +58,12 @@ public class UserControllerTest {
 
         String ret = restTemplate.postForObject("http://localhost:8080/user", authUserWrapper, String.class);
         assertThat(ret).isEqualTo("Success");
-        assertThat(userRepository.findByEmailAndPasswordAndRole(EMAIL, PASSWORD, "student")).isNotEmpty();
+        assertThat(userRepository.findByEmailAndPasswordAndRole("nhu.bui.200014@student.fulbright.edu.vn", hashPassword(PASSWORD), "student")).isNotEmpty();
 
     }
 
     @Test
+    @Order(3)
     void testAddUser2(){
         AuthUserWrapper authUserWrapper = new AuthUserWrapper();
         User auth = User.builder()
@@ -72,11 +83,17 @@ public class UserControllerTest {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     void testLogin(){
-        User user = userRepository.findByEmailAndPassword(EMAIL, PASSWORD).get(0);
+        User user = User.builder()
+                .email(EMAIL)
+                .password(hashPassword(PASSWORD))
+                .name("Nguyen Thi Thuy Dung")
+                .role("admin")
+                .build();
+        userRepository.save(user);
 
-        final User loginUser = User.builder()
+        User loginUser = User.builder()
                 .email(EMAIL)
                 .password(PASSWORD)
                 .build();
@@ -86,20 +103,26 @@ public class UserControllerTest {
     }
 
     @Test
+    @Order(5)
     void testLogin2(){
-        User user = userRepository.findByEmailAndPassword(EMAIL, PASSWORD).get(0);
+        User user = userRepository.findByEmailAndPassword(EMAIL, hashPassword(PASSWORD)).get(0);
         final User loginUser = User.builder()
                 .email(EMAIL)
                 .password("SJJHBUDHBA")
                 .build();
         User loginResult = restTemplate.postForObject("http://localhost:8080/login", loginUser, User.class);
-        assertThat(loginResult).extracting(User::getEmail).isEqualTo(user.getEmail());
+        assertThat(loginResult).extracting(User::getEmail).isNotEqualTo(user.getEmail());
+
     }
 
     @Test
+    @Order(6)
     void testUpdateUser(){
-        User oldUser = userRepository.findByEmailAndPassword(EMAIL, PASSWORD).get(0);
-        assertThat("admin").isEqualTo(oldUser.getRole());
+
+        List<User> oldUsers = userRepository.findByEmailAndPassword(EMAIL, hashPassword(PASSWORD));
+        assertThat(oldUsers).isNotEmpty();
+        assertThat(oldUsers.get(0)).extracting(User::getRole).isNotEqualTo("student");
+
         AuthUserWrapper authUserWrapper = new AuthUserWrapper();
         User auth = User.builder()
                 .email("anh.nguyen.190005@student.fulbright.edu.vn")
@@ -109,13 +132,16 @@ public class UserControllerTest {
         User updatedUser = User.builder()
                 .email(EMAIL)
                 .password(PASSWORD)
-                .name("Nguyen Thi Thuy Dung")
                 .role("student")
                 .build();
+
         authUserWrapper.setAuth(auth);
         authUserWrapper.setUser(updatedUser);
-        User ret = restTemplate.put("http://localhost:8080/user");
+
+        restTemplate.put("http://localhost:8080/user/{id}",authUserWrapper,oldUsers.get(0).getId());
+        assertThat(userRepository.findByEmailAndPassword(EMAIL, hashPassword(PASSWORD)).get(0))
+                .extracting((User::getRole)).isEqualTo("student");
     }
 
-
+    
 }
