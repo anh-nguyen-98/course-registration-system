@@ -100,16 +100,18 @@ public class UserController {
                 setStudentIdHelper(user);
                 userRepository.save(user);
             }
-            return user;
         }
         return new User();
     }
 
     @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable(name = "id") Long id){
-        User user = userRepository.findById(id).orElse(null);
-        if (user != null){
-            userRepository.deleteById(id);
+    public void deleteUser(@RequestBody User auth,
+                           @PathVariable(name = "id") Long id){
+        Permission p = permissionRepository.findByPermission("edit_user").get(0);
+        boolean hasPermission = hasPermission(auth, p);
+        if (hasPermission){
+            User user = userRepository.findById(id).orElse(null);
+            if (user != null) { userRepository.deleteById(id); }
         }
     }
 
