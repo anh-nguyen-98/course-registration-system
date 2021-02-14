@@ -99,13 +99,48 @@ localhost:8080/user
         "password": "1234",
         "role": "student"
     }
-    
-}
-   ```
+    }
+    ```
   
 3. Update User: 
+- Updates info (name, email, password or role) of specific user iff the requester has an Admin role.
+- The requester is required to send 3 info: 
+  - requester authentication info: email & password 
+  - user id (that needs update)
+  - user update info: 
+    - email (required)
+    - password (required)
+    - name (optional)
+    - role (optional)
+ - In Postman, set: 
+   - PUT method type
+   - Request URL: 
+   ```
+   localhost:8080/user/{id}
+   ```
+   - Request body: 
+   
+Example 
+   ```
+   {
+        "name": "Phan Lan Khanh",
+        "email": "khanh.phan.190034@student.fulbright.edu.vn",
+        "password": "1234",
+        "role": "student"
+    }
+   ```
 
 4. Delete User: 
+- Deletes a user from the system iff the requester has Admin role. 
+- The requester is required to send 2 info: 
+  - requester authentication info: email & password 
+  - user id (that needs deletion)
+- In Postman, set: 
+  - DELETE method type
+  - Request URL: 
+   ```
+   localhost:8080/user/{id}
+   ```
 
 ### View/ Add/ Update/ Delete Course 
 
