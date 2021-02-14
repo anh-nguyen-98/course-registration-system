@@ -41,17 +41,24 @@ Each role has different sets of permisions:
 
 ![Access](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/access.jpg)
 
-### View/ Add/ Update User 
+### View/ Add/ Update/ Delete User 
 1. View User: 
-- Returns a list of all users in the system iff the requester is an Admin user. 
+- Returns a list of all users or a specfic user info in the system iff the requester is an Admin user, else returns an empty list/ empty user. 
 - The requester is required to send authentication info: email & password. 
 - In Postman, set: 
   - GET method type
   - Request URL: 
+  
+  for viewing all users: 
 ```
 localhost:8080/user
 ```
-  - Request body: email and password of the requester 
+ 
+ for viewing a specific user: 
+ ```
+ localhost:8080/user/{id}
+ ```
+ - Request body: email and password of the requester 
   
   Example: 
   
@@ -71,9 +78,36 @@ localhost:8080/user
     - password (required)
     - name (optional)
     - role (optional)
+ - In Postman, set: 
+   - POST method type
+   - Request URL: 
+   ```
+   localhost:8080/user
+   ```
+   - Request body: 
+   
+   Example: 
+   ```json
+   {
+    "user1": {
+        "email": "anh.nguyen.190005@student.fulbright.edu.vn",
+        "password": "1234"
+    },
+    "user2": {
+        "name": "Phan Lan Khanh",
+        "email": "khanh.phan.190034@student.fulbright.edu.vn",
+        "password": "1234",
+        "role": "student"
+    }
+    
+}
+   ```
+  
 3. Update User: 
 
-### View/ Add/ Update Course 
+4. Delete User: 
+
+### View/ Add/ Update/ Delete Course 
 
 ### Register/ Cancel Course 
 
