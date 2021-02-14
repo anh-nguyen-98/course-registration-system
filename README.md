@@ -18,6 +18,7 @@ The repo includes the database for the system.
 
 ### Role-based access
 There are 3 roles in system: admin, student, guest. 
+
 ![role](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/role.jpg)
 
 ## Contributing
