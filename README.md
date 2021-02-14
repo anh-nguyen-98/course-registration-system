@@ -43,12 +43,20 @@ Each role has different sets of permisions:
 
 ### View/ Add/ Update User 
 1. View User: 
-- GET method 
-- In Postman, choose GET method type, with request url: 
+- In Postman, set: 
+  - GET method type
+  - Request URL: 
 ```
 localhost:8080/user
 ```
-
+  - Request body: 
+ ```json
+ {
+    "email": "anh.nguyen.190005@student.fulbright.edu.vn",
+    "password": "1234" 
+}
+ ```
+ 
 ### View/ Add/ Update Course 
 
 ### Register/ Cancel Course 
