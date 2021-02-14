@@ -4,10 +4,13 @@ Course Registration RESTful APIs are role-based APIs for mananaging user account
 
 ## Installation
 
-Clone the repo
+1. Clone the repo
 ```bash
 git clone https://github.com/anh-nguyen-98/course-registration-system.git
 ```
+
+2. Install Postman to use the http methods 
+[Download Postman](https://www.postman.com/downloads/)
 
 ## Usage
 
