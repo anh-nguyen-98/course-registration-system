@@ -11,7 +11,11 @@ git clone https://github.com/anh-nguyen-98/course-registration-system.git
 
 The repo includes the [database](https://github.com/anh-nguyen-98/course-registration-system/blob/main/testdb.mv.db) for the system. 
 
-2. [Install Postman](https://www.postman.com/downloads/) to use the http methods 
+2. [Install Postman](https://www.postman.com/downloads/) to send the http requests and use the APIs 
+
+In each Postman request, configure Header section: 
+
+![header](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/header%20postman.jpg)
 
 
 ## Usage
@@ -38,6 +42,12 @@ Each role has different sets of permisions:
 ![Access](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/access.jpg)
 
 ### View/ Add/ Update User 
+1. View User: 
+- GET method 
+- In Postman, choose GET method type, with request url: 
+```
+localhost:8080/user
+```
 
 ### View/ Add/ Update Course 
 
