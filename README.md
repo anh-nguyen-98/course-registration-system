@@ -102,6 +102,11 @@ localhost:8080/user
     }
     ```
   
+ ![add user](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/add%20user%20success.jpg)
+ 
+ ![fail](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/add%20user%20failure.jpg)
+ 
+ 
 **3. Update User**: 
 - Updates info (name, email, password or role) of specific user iff the requester has an Admin role.
 - The requester is required to send 3 info: 
@@ -196,8 +201,8 @@ localhost:8080/course
     }
 
 }
-    ```
-  
+
+![course](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/add%20course%20success.jpg)
 **3. Update Course**: 
 - Updates info (name, code, capacity, startDate, endDate, currentStudents, pastStudents, prerequisites) of specific course iff the requester has an Admin role.
 - The requester is required to send 3 info: 
@@ -259,6 +264,8 @@ Example
 ![success](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/register%20course%20success.jpg)
 
 ![failure](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/register%20course%20failure.jpg)
+
+
 **2. Student cancel a course for him/ herself **
 
 - Cancels a course successfully if: 
