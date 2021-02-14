@@ -9,7 +9,7 @@ Course Registration RESTful APIs are role-based APIs for mananaging user account
 git clone https://github.com/anh-nguyen-98/course-registration-system.git
 ```
 
-The repo includes the database for the system. 
+The repo includes the [database](https://github.com/anh-nguyen-98/course-registration-system/blob/main/testdb.mv.db) for the system. 
 
 2. [Install Postman](https://www.postman.com/downloads/) to use the http methods 
 
@@ -20,6 +20,28 @@ The repo includes the database for the system.
 There are 3 roles in system: admin, student, guest. 
 
 ![role](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/role.jpg)
+
+Each role has different sets of permisions: 
+1. admin: 
+- view, edit users 
+- view, edit courses 
+- register, cancel courses for any students 
+
+2. student: 
+- view courses 
+- register courses only for him/her
+- cancel courses only for him/her
+
+3. guest: 
+- view courses 
+
+![Access](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/access.jpg)
+
+### View/ Add/ Update User 
+
+### View/ Add/ Update Course 
+
+### Register/ Cancel Course 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
