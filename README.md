@@ -44,6 +44,7 @@ Each role has different sets of permisions:
 ### View/ Add/ Update User 
 1. View User: 
 - Returns a list of all users in the system iff the requester is an Admin user. 
+- The requester is required to send authentication info: email & password. 
 - In Postman, set: 
   - GET method type
   - Request URL: 
@@ -51,7 +52,9 @@ Each role has different sets of permisions:
 localhost:8080/user
 ```
   - Request body: email and password of the requester 
+  
   Example: 
+  
  ```json
  {
     "email": "anh.nguyen.190005@student.fulbright.edu.vn",
@@ -59,70 +62,17 @@ localhost:8080/user
 }
  ```
  
-- Result: 
-```json
-[
-    {
-        "id": 1,
-        "role": "admin",
-        "permissions": [
-            {
-                "id": 5,
-                "permission": "view_course"
-            },
-            {
-                "id": 4,
-                "permission": "edit_user"
-            },
-            {
-                "id": 3,
-                "permission": "view_user"
-            },
-            {
-                "id": 7,
-                "permission": "register_course"
-            },
-            {
-                "id": 6,
-                "permission": "edit_course"
-            },
-            {
-                "id": 8,
-                "permission": "cancel_course"
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "role": "student",
-        "permissions": [
-            {
-                "id": 5,
-                "permission": "view_course"
-            },
-            {
-                "id": 257,
-                "permission": "register_my_course"
-            },
-            {
-                "id": 258,
-                "permission": "cancel_my_course"
-            }
-        ]
-    },
-    {
-        "id": 897,
-        "role": "guest",
-        "permissions": [
-            {
-                "id": 5,
-                "permission": "view_course"
-            }
-        ]
-    }
-]
-```
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+2. Add User: 
+- Returns "Success" and adds a new user to the system iff the requester has Admin role, else returns "Access denied"
+- The requester is required to send 2 info: 
+  - requester authentication info: email & password 
+  - user info: 
+    - email (required)
+    - password (required)
+    - name (optional)
+    - role (optional)
+3. Update User: 
+
 ### View/ Add/ Update Course 
 
 ### Register/ Cancel Course 
