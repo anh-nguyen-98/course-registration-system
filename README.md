@@ -5,7 +5,6 @@ Course Registration RESTful APIs are role-based APIs for mananaging user account
 ## Table of Contents  
 * [Installation](#Installation)  
 * [Usage](#Usage)  
-* [Author](#Authors)
 * [Contributing](#Contributing)
 * [License](#License)
 
@@ -293,8 +292,6 @@ Example
    
  ![cancel](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/cancel%20course.jpg)
 
-## Authors
-Nguyen Hoang Nam Anh
 
 
 ## Contributing
