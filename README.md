@@ -5,7 +5,7 @@ Course Registration RESTful APIs are role-based APIs for mananaging user account
 ## Table of Contents  
 [Installation](#Installation)  
 [Usage](#Usage)  
-  [Role-based access](#Role-based access)
+  [Role-based access:](#Role-based access)
 
 ## Installation
 
