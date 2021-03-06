@@ -3,14 +3,12 @@
 Course Registration RESTful APIs are role-based APIs for mananaging user accounts and course content, dealing with course registration and course cancellation in a university.
 
 ## Table of Contents  
-[Installation](#Installation)  
-[Usage](#Usage)  
-
-[Author](#Authors)
-
-[Contributing](#Contributing)
-
-[License](#License)
+* [Installation](#Installation)  
+* [Usage](#Usage)  
+  * [Role-based access] (#Role-based access)
+* [Author](#Authors)
+* [Contributing](#Contributing)
+* [License](#License)
 
 ## Installation
 
