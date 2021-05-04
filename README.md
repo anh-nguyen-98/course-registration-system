@@ -2,6 +2,12 @@
 
 Course Registration RESTful APIs are role-based APIs for mananaging user accounts and course content, dealing with course registration and course cancellation in a university.
 
+## Table of Contents  
+* [Installation](#Installation)  
+* [Usage](#Usage)  
+* [Contributing](#Contributing)
+* [License](#License)
+
 ## Installation
 
 1. Clone the repo
@@ -102,6 +108,11 @@ localhost:8080/user
     }
     ```
   
+ ![add user](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/add%20user%20success.jpg)
+ 
+ ![fail](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/add%20user%20failure.jpg)
+ 
+ 
 **3. Update User**: 
 - Updates info (name, email, password or role) of specific user iff the requester has an Admin role.
 - The requester is required to send 3 info: 
@@ -161,7 +172,10 @@ localhost:8080/course
   
  
 **2. Add Course**: 
-- Returns "Success" and adds a new course to the system iff the requester has Admin role
+- Returns 
+  - "Success" and adds a new course to the system iff the requester has Admin role and course code is provided,
+  - "Access denied" if the requester has no Admin role
+  - "Missing course code" if course code is not provided
 - The requester is required to send 2 info: 
   - requester authentication info: email & password 
   - course info: 
@@ -193,8 +207,8 @@ localhost:8080/course
     }
 
 }
-    ```
-  
+
+![course](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/add%20course%20success.jpg)
 **3. Update Course**: 
 - Updates info (name, code, capacity, startDate, endDate, currentStudents, pastStudents, prerequisites) of specific course iff the requester has an Admin role.
 - The requester is required to send 3 info: 
@@ -236,6 +250,49 @@ Example
    ```
 
 ### Register/ Cancel Course 
+**1. Student register course for him/herself**
+
+- Registers course successfully iff: 
+  - the requester has Student role,
+  - course has available slots,
+  - requester completes all course prerequisites 
+- The requester is required to send 2 info: 
+  - requester authentication info: email & password 
+  - course id (that he/she wants to register)
+ - In Postman, set: 
+   - PUT method type
+   - Request body: email & password of requester
+   - Request URL:
+   ```
+   localhost:8080/register/course/{course id}
+   ```
+   
+![success](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/register%20course%20success.jpg)
+
+![failure](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/register%20course%20failure.jpg)
+
+
+**2. Student cancel a course for him/ herself **
+
+- Cancels a course successfully if: 
+  - the requester has Student role,
+  - within 2 weeks after course's start date 
+ 
+- The requester is required to send 2 info: 
+  - requester authentication info: email & password 
+  - course id (that he/she wants to cancel)
+  
+- In Postman, set: 
+   - PUT method type
+   - Request body: email & password of requester
+   - Request URL:
+   ```
+   localhost:8080/cancel/course/{course id}
+   ``` 
+   
+ ![cancel](https://github.com/anh-nguyen-98/course-registration-system/blob/main/images/cancel%20course.jpg)
+
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
