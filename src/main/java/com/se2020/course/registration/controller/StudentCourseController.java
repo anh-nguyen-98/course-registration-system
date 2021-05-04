@@ -45,7 +45,7 @@ public class StudentCourseController {
                 }
 
                 // prerequisite check
-                List<Course> missingPre = missingPrerequisites(c, stu);
+                List<String> missingPre = missingPrerequisites(c, stu);
                 if (missingPre.size() >0 ){
                     return "Missing prerequisites: " + missingPre.toString();
                 }
@@ -137,14 +137,14 @@ public class StudentCourseController {
         return false;
     }
 
-    private List<Course> missingPrerequisites(Course c, Student student){
-        List<Course> missingPre = new ArrayList<>();
+    private List<String> missingPrerequisites(Course c, Student student){
+        List<String> missingPre = new ArrayList<>();
         Set<Course> pre = c.getPrerequisites();
         Set<Course> pastCourses = student.getPastCourses();
 
         for (Course p: pre){
             if (!pastCourses.contains(p)){
-                missingPre.add(p);
+                missingPre.add(p.getName());
             }
         }
         return missingPre;

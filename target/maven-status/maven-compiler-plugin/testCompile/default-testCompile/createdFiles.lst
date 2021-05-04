@@ -1,0 +1,3 @@
+com\se2020\course\registration\CourseRegistrationApplicationTests.class
+com\se2020\course\registration\integration\controller\UserControllerTest.class
+com\se2020\course\registration\unit\utils\SecurityUtilsTest.class
