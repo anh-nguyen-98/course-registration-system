@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: com.se2020.course.registration.unit.controller.UserControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 6.714 s <<< FAILURE! - in com.se2020.course.registration.unit.controller.UserControllerTest
+testAddUser  Time elapsed: 0.6 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+
+Expecting:
+ <"Success">
+to be equal to:
+ <"Access denied">
+but was not.
+	at com.se2020.course.registration.unit.controller.UserControllerTest.testAddUser(UserControllerTest.java:50)
+

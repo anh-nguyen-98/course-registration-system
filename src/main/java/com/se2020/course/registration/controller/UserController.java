@@ -98,7 +98,7 @@ public class UserController {
                 user.setName(newUser.getName());
                 user.setRole(newUser.getRole());
                 setStudentIdHelper(user);
-                userRepository.save(user);
+                return userRepository.save(user);
             }
         }
         return new User();
